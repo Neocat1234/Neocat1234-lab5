@@ -36,5 +36,5 @@ public class Enigma{
                 rotors[2].rotate();
             }
         }
-    }
+    }}
     
