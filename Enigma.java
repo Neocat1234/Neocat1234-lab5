@@ -1,5 +1,7 @@
 public class Enigma{
 
+    private static final String ALPHABET = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
     private String rotorInit[] = {"#GNUAHOVBIPWCJQXDKRYELSZFMT",
         "#EJOTYCHMRWAFKPUZDINSXBGLQV",
         "#BDFHJLNPRTVXZACEGIKMOQSUWY",
@@ -20,13 +22,39 @@ public class Enigma{
 
 
     public String decrypt(String message){        
-        //TODO
+        String result = "";
+
+        for (int i = 0; i < message.length(); i++) {
+            char current = message.charAt(i);
+
+            current = rotors[2].charAt(ALPHABET.indexOf(current));
+            current = rotors[1].charAt(ALPHABET.indexOf(current));
+            current = rotors[0].charAt(ALPHABET.indexOf(current));
+
+            result += current;
+            rotate();
+        }
+
+        return result;
     }
 
 
     
     public String encrypt(String message){
-        //TODO
+        String result = "";
+
+        for (int i = 0; i < message.length(); i++) {
+            char current = message.charAt(i);
+
+            current = ALPHABET.charAt(rotors[0].indexOf(current));
+            current = ALPHABET.charAt(rotors[1].indexOf(current));
+            current = ALPHABET.charAt(rotors[2].indexOf(current));
+
+            result += current;
+            rotate();
+        }
+
+        return result;
     }
 
     
