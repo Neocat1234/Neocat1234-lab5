@@ -1,14 +1,16 @@
 public class Enigma{
 
+    //the 5 possible rotors to choose from
     private String rotorInit[] = {"#GNUAHOVBIPWCJQXDKRYELSZFMT",
         "#EJOTYCHMRWAFKPUZDINSXBGLQV",
         "#BDFHJLNPRTVXZACEGIKMOQSUWY",
         "#NWDKHGXZVRIFJBLMAOPSCYUTQE",
         "#TGOWHLIFMCSZYRVXQABUPEJKND"};
 
-
+    //inner middle outer rotor
     private Rotor rotors[];
         
+    //setting up the 3 rotors with their starting positions
     public Enigma(int id1, int id2, int id3, String start){
 
         rotors = new Rotor[3];
@@ -19,13 +21,12 @@ public class Enigma{
     }
 
 
-    public String decrypt(String message){        
+    public String decrypt(String message){   //note the use of private (:     
         String result = "";
 
         for (int i = 0; i < message.length(); i++) {
             char current = message.charAt(i);
 
-            // reverse: find char on outer, note char on middle, find that on outer, output char on inner
             current = rotors[0].charAt(rotors[2].indexOf(rotors[1].charAt(rotors[2].indexOf(current))));
 
             result += current;
@@ -43,7 +44,6 @@ public class Enigma{
         for (int i = 0; i < message.length(); i++) {
             char current = message.charAt(i);
 
-            // find char on inner, note char on outer, find that on middle, output char on outer
             current = rotors[2].charAt(rotors[1].indexOf(rotors[2].charAt(rotors[0].indexOf(current))));
 
             result += current;

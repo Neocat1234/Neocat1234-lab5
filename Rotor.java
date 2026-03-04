@@ -1,7 +1,8 @@
 public class Rotor {
 
-    
+    //the rotor string index 0 is on top
     private String rotorValues;
+    //need this to know when weve done a full rotation
     private char startChar;
         
     public Rotor(String v, char c){
@@ -22,11 +23,12 @@ public class Rotor {
                
     }
     
-
+    //find index of a char in the rotor
     public int indexOf(char c){
         return this.rotorValues.indexOf(c);
     }
 
+    //get\tig char at index 
     public char charAt(int idx){
         return this.rotorValues.charAt(idx);
     }
