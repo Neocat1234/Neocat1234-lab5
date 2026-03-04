@@ -1,7 +1,5 @@
 public class Enigma{
 
-    private static final String ALPHABET = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
     private String rotorInit[] = {"#GNUAHOVBIPWCJQXDKRYELSZFMT",
         "#EJOTYCHMRWAFKPUZDINSXBGLQV",
         "#BDFHJLNPRTVXZACEGIKMOQSUWY",
@@ -27,9 +25,8 @@ public class Enigma{
         for (int i = 0; i < message.length(); i++) {
             char current = message.charAt(i);
 
-            current = rotors[2].charAt(ALPHABET.indexOf(current));
-            current = rotors[1].charAt(ALPHABET.indexOf(current));
-            current = rotors[0].charAt(ALPHABET.indexOf(current));
+            // reverse: find char on outer, note char on middle, find that on outer, output char on inner
+            current = rotors[0].charAt(rotors[2].indexOf(rotors[1].charAt(rotors[2].indexOf(current))));
 
             result += current;
             rotate();
@@ -46,9 +43,8 @@ public class Enigma{
         for (int i = 0; i < message.length(); i++) {
             char current = message.charAt(i);
 
-            current = ALPHABET.charAt(rotors[0].indexOf(current));
-            current = ALPHABET.charAt(rotors[1].indexOf(current));
-            current = ALPHABET.charAt(rotors[2].indexOf(current));
+            // find char on inner, note char on outer, find that on middle, output char on outer
+            current = rotors[2].charAt(rotors[1].indexOf(rotors[2].charAt(rotors[0].indexOf(current))));
 
             result += current;
             rotate();
